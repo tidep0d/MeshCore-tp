@@ -124,6 +124,9 @@ void BaseChatMesh::onAdvertRecv(mesh::Packet* packet, const mesh::Identity& id, 
   from->last_advert_timestamp = timestamp;
   from->lastmod = getRTCClock()->getCurrentTime();
 
+  // [TODO] Check for messages in send queue that have been undelivered and if they match the contact then send message buffer.
+
+
   onDiscoveredContact(*from, is_new, packet->path_len, packet->path);       // let UI know
 }
 

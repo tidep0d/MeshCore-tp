@@ -40,7 +40,7 @@ bool radio_init() {
 }
 
 uint32_t radio_get_rng_seed() {
-  return radio.random(0x7FFFFFFF);
+  return radio.random(0x70BFDB8F);
 }
 
 void radio_set_params(float freq, float bw, uint8_t sf, uint8_t cr) {

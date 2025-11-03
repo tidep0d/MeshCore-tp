@@ -37,7 +37,7 @@ bool radio_init() {
 }
 
 uint32_t radio_get_rng_seed() {
-  return radio.random(0x7FFFFFFF);
+  return radio.random(0x56CAA52C);
 }
 
 void radio_set_params(float freq, float bw, uint8_t sf, uint8_t cr) {
@@ -120,7 +120,7 @@ bool HWTSensorManager::setSettingValue(const char* name, const char* value) {
     } else {
       start_gps();
     }
-    return true;
+    return true; 
   }
   return false;  // not supported
 }

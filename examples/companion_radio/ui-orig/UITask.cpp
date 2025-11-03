@@ -3,7 +3,7 @@
 #include <helpers/TxtDataHelpers.h>
 #include "../MyMesh.h"
 
-#define AUTO_OFF_MILLIS     15000   // 15 seconds
+#define AUTO_OFF_MILLIS     20000   // 20 seconds
 #define BOOT_SCREEN_MILLIS   3000   // 3 seconds
 
 #ifdef PIN_STATUS_LED

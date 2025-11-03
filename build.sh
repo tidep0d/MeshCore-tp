@@ -148,7 +148,7 @@ build_repeater_firmwares() {
 #  build_firmware "RAK_4631_Repeater"
 
   # build all repeater firmwares
-  build_all_firmwares_by_suffix "_repeater"
+  build_all_firmwares_by_suffix "-repeater-tp"
 
 }
 
@@ -165,10 +165,11 @@ build_companion_firmwares() {
 #  build_firmware "RAK_4631_companion_radio_usb"
 #  build_firmware "RAK_4631_companion_radio_ble"
 #  build_firmware "t1000e_companion_radio_ble"
+  build_all_firmwares_by_suffix "companion_ble-tp"
 
   # build all companion firmwares
-  build_all_firmwares_by_suffix "_companion_radio_usb"
-  build_all_firmwares_by_suffix "_companion_radio_ble"
+  # build_all_firmwares_by_suffix "_companion_radio_usb"
+  # build_all_firmwares_by_suffix "_companion_radio_ble"
 
 }
 
