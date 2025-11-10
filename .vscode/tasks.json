@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "PlatformIO",
+			"task": "Full Clean",
+			"problemMatcher": [
+				"$platformio"
+			],
+			"label": "PlatformIO: Full Clean",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
