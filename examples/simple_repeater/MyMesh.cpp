@@ -170,7 +170,10 @@ int MyMesh::handleRequest(ClientInfo *sender, uint32_t sender_timestamp, uint8_t
     telemetry.reset();
     telemetry.addVoltage(TELEM_CHANNEL_SELF, (float)board.getBattMilliVolts() / 1000.0f);
     // query other sensors -- target specific
-    sensors.querySensors((sender->isAdmin() ? 0xFF : 0x00) & perm_mask, telemetry);
+    if ((sender->permissions & PERM_ACL_ROLE_MASK) == PERM_ACL_GUEST) {
+      perm_mask = 0x00;  // just base telemetry allowed
+    }
+    sensors.querySensors(perm_mask, telemetry);
 
     uint8_t tlen = telemetry.getSize();
     memcpy(&reply_data[4], telemetry.getBuffer(), tlen);
@@ -707,6 +710,8 @@ MyMesh::MyMesh(mesh::MainBoard &board, mesh::Radio &radio, mesh::MillisecondCloc
   _prefs.gps_enabled = 0;
   _prefs.gps_interval = 0;
   _prefs.advert_loc_policy = ADVERT_LOC_PREFS;
+
+  _prefs.adc_multiplier = 0.0f; // 0.0f means use default board multiplier
 }
 
 void MyMesh::begin(FILESYSTEM *fs) {
@@ -729,6 +734,8 @@ void MyMesh::begin(FILESYSTEM *fs) {
 
   updateAdvertTimer();
   updateFloodAdvertTimer();
+
+  board.setAdcMultiplier(_prefs.adc_multiplier);
 
 #if ENV_INCLUDE_GPS == 1
   applyGpsPrefs();
